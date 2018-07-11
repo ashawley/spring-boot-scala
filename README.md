@@ -1,6 +1,8 @@
 Spring Boot 1.x in Scala
 ========================
 
+[![Build Status](https://travis-ci.org/ashawley/spring-boot-scala.svg?branch=hello-world)](https://travis-ci.org/ashawley/spring-boot-scala)
+
 Run [Spring Boot] 1.5 from [Scala] and [sbt].
 
 Starting
