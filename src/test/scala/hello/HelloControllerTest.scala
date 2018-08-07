@@ -1,5 +1,7 @@
 package hello
 
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -23,6 +25,19 @@ class HelloControllerTest {
 
   @Autowired
   var mvc: MockMvc = _
+
+  @Autowired
+  var hellos: HelloRepository = _
+
+  @Before
+  def setUp: Unit = {
+    hellos.save(Hello("Hello world!"))
+  }
+
+  @After
+  def tearDown: Unit = {
+    hellos.deleteAll
+  }
 
   @Test
   def indexGet: Unit = {
