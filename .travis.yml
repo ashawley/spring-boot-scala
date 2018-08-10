@@ -5,6 +5,9 @@ scala:
   - 2.12.6
   - 2.13.0-M4
 
+services:
+  - neo4j
+
 script:
   - sbt ++$TRAVIS_SCALA_VERSION update compile test
 

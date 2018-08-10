@@ -1,5 +1,7 @@
 package hello
 
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -15,14 +17,29 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.transaction.annotation.Transactional
 
 @RunWith(classOf[SpringRunner])
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional
 class HelloControllerTest {
 
   @Autowired
   var mvc: MockMvc = _
+
+  @Autowired
+  var hellos: HelloRepository = _
+
+  @Before
+  def setUp: Unit = {
+    hellos.save(Hello("Hello world!"))
+  }
+
+  @After
+  def tearDown: Unit = {
+    hellos.deleteAll
+  }
 
   @Test
   def indexGet: Unit = {
